@@ -1,0 +1,388 @@
+/* WaifuDiffusion Tagger Extension Styles */
+
+/* Main Container Styles */
+.wd-tagger-container {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 10px 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Header Styles */
+.wd-tagger-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.wd-tagger-header h2 {
+    color: #ffffff;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-weight: 700;
+}
+
+.wd-tagger-header p {
+    color: #f0f0f0;
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin: 5px 0;
+}
+
+/* Panel Styles */
+.wd-tagger-input-panel {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    padding: 20px !important;
+    margin-right: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.wd-tagger-output-panel {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    padding: 20px !important;
+    margin-left: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Image Upload Styles */
+.wd-tagger-image-upload {
+    border: 2px dashed rgba(255, 255, 255, 0.3) !important;
+    border-radius: 10px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    padding: 20px !important;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.wd-tagger-image-upload:hover {
+    border-color: rgba(255, 255, 255, 0.6) !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.wd-tagger-image-upload::before {
+    content: '✨';
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    opacity: 0.6;
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Model Selector Styles */
+.wd-tagger-model-selector {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 8px !important;
+    padding: 10px !important;
+    color: #ffffff !important;
+    margin: 10px 0;
+}
+
+.wd-tagger-model-selector select {
+    background: rgba(0, 0, 0, 0.2) !important;
+    color: #ffffff !important;
+    border: none !important;
+    padding: 8px !important;
+    border-radius: 6px !important;
+}
+
+/* Threshold Row Styles */
+.wd-tagger-threshold-row {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Slider Styles */
+.wd-tagger-slider {
+    margin: 10px 0;
+}
+
+.wd-tagger-slider input[type="range"] {
+    background: linear-gradient(90deg, #667eea, #764ba2) !important;
+    border-radius: 10px !important;
+    height: 8px !important;
+    outline: none !important;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.wd-tagger-slider input[type="range"]:hover {
+    opacity: 1;
+}
+
+.wd-tagger-slider input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Checkbox Styles */
+.wd-tagger-checkbox {
+    margin: 10px 0;
+}
+
+.wd-tagger-checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    accent-color: #667eea;
+}
+
+/* Button Styles */
+.wd-tagger-button-row {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+    justify-content: center;
+}
+
+.wd-tagger-button {
+    padding: 12px 30px !important;
+    border-radius: 25px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    transition: all 0.3s ease !important;
+    border: none !important;
+    cursor: pointer !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.wd-tagger-predict-button {
+    background: linear-gradient(45deg, #667eea, #764ba2) !important;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4) !important;
+}
+
+.wd-tagger-predict-button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6) !important;
+}
+
+.wd-tagger-clear-button {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24) !important;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4) !important;
+}
+
+.wd-tagger-clear-button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6) !important;
+}
+
+.wd-tagger-copy-button {
+    background: linear-gradient(45deg, #48cae4, #0077b6) !important;
+    color: white !important;
+    padding: 8px 20px !important;
+    border-radius: 20px !important;
+    font-size: 0.9em !important;
+    margin-top: 10px !important;
+    box-shadow: 0 3px 10px rgba(72, 202, 228, 0.3) !important;
+}
+
+.wd-tagger-copy-button:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 5px 15px rgba(72, 202, 228, 0.5) !important;
+}
+
+/* Status Indicator Styles */
+.wd-tagger-status {
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    text-align: center;
+    font-weight: 500;
+    font-size: 1.1em;
+}
+
+/* Output Tabs Styles */
+.wd-tagger-output-tabs {
+    margin: 20px 0;
+}
+
+.wd-tagger-tab {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 8px !important;
+    padding: 15px !important;
+    margin: 5px 0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Tag Output Styles */
+.wd-tagger-tag-output {
+    background: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 8px !important;
+    padding: 15px !important;
+    color: #ffffff !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.95em !important;
+    line-height: 1.5 !important;
+    resize: vertical !important;
+    min-height: 120px !important;
+}
+
+.wd-tagger-tag-output:focus {
+    outline: none !important;
+    border-color: rgba(102, 126, 234, 0.6) !important;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2) !important;
+}
+
+/* Rating Output Styles */
+.wd-tagger-rating-output {
+    background: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 8px !important;
+    padding: 15px !important;
+    color: #ffffff !important;
+    font-family: 'Courier New', monospace !important;
+    max-height: 200px !important;
+    overflow-y: auto !important;
+}
+
+/* Character Output Styles */
+.wd-tagger-character-output {
+    background: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 8px !important;
+    padding: 15px !important;
+    color: #ffffff !important;
+    font-family: 'Courier New', monospace !important;
+    max-height: 200px !important;
+    overflow-y: auto !important;
+}
+
+/* All Tags Output Styles */
+.wd-tagger-all-tags {
+    background: rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 8px !important;
+    padding: 15px !important;
+    color: #ffffff !important;
+    font-family: 'Courier New', monospace !important;
+    max-height: 300px !important;
+    overflow-y: auto !important;
+}
+
+/* Processing Info Styles */
+.wd-tagger-info {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: 'Courier New', monospace;
+    font-size: 0.9em;
+    line-height: 1.6;
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .wd-tagger-container {
+        padding: 15px;
+        margin: 5px 0;
+    }
+    
+    .wd-tagger-input-panel,
+    .wd-tagger-output-panel {
+        margin: 10px 0;
+        padding: 15px;
+    }
+    
+    .wd-tagger-header h1 {
+        font-size: 2em;
+    }
+    
+    .wd-tagger-button-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .wd-tagger-button {
+        width: 100%;
+        padding: 12px 0 !important;
+        font-size: 1em !important;
+    }
+
+    .wd-tagger-copy-button {
+        width: 100%;
+        margin-top: 10px !important;
+        font-size: 1em !important;
+        padding: 10px 0 !important;
+    }
+
+    .wd-tagger-tag-output,
+    .wd-tagger-rating-output,
+    .wd-tagger-character-output,
+    .wd-tagger-all-tags {
+        font-size: 0.95em !important;
+        padding: 10px !important;
+        min-height: 80px !important;
+    }
+
+    .wd-tagger-header p {
+        font-size: 1em;
+    }
+
+    .wd-tagger-model-selector {
+        padding: 8px !important;
+        font-size: 1em !important;
+    }
+
+    .wd-tagger-slider input[type="range"] {
+        height: 6px !important;
+    }
+}
