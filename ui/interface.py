@@ -78,6 +78,14 @@ class WaifuDiffusionUI:
                             info="Automatic threshold detection",
                             elem_classes=["wd-tagger-checkbox"]
                         )
+
+                    with gr.Row():
+                        prepend_character_tags = gr.Checkbox(
+                            value=True,
+                            label="Prepend Character Tags",
+                            info="Add character names to the beginning of the tag list",
+                            elem_classes=["wd-tagger-checkbox"]
+                        )
                     
                     # Batch processing
                     with gr.Row():
@@ -143,19 +151,19 @@ class WaifuDiffusionUI:
                         )
                     
                     with gr.TabItem("⭐ Ratings", elem_classes=["wd-tagger-tab"]):
-                        rating_output = gr.JSON(
+                        rating_output = gr.Label(
                             label="Content Ratings",
                             elem_classes=[self.config.css_classes["rating_output"]]
                         )
                     
                     with gr.TabItem("👥 Characters", elem_classes=["wd-tagger-tab"]):
-                        character_output = gr.JSON(
+                        character_output = gr.Label(
                             label="Detected Characters",
                             elem_classes=[self.config.css_classes["character_output"]]
                         )
                     
                     with gr.TabItem("🔍 All Tags", elem_classes=["wd-tagger-tab"]):
-                        all_tags_output = gr.JSON(
+                        all_tags_output = gr.Label(
                             label="All General Tags with Confidence",
                             elem_classes=["wd-tagger-all-tags"]
                         )
@@ -175,6 +183,7 @@ class WaifuDiffusionUI:
             "general_mcut": general_mcut,
             "character_thresh": character_thresh,
             "character_mcut": character_mcut,
+            "prepend_character_tags": prepend_character_tags,
             "predict_btn": predict_btn,
             "clear_btn": clear_btn,
             "standard_output": standard_output,
@@ -207,7 +216,8 @@ class WaifuDiffusionUI:
                 self.components["general_thresh"],
                 self.components["general_mcut"],
                 self.components["character_thresh"],
-                self.components["character_mcut"]
+                self.components["character_mcut"],
+                self.components["prepend_character_tags"]
             ],
             outputs=[
                 self.components["standard_output"],
@@ -277,15 +287,15 @@ class WaifuDiffusionUI:
             _js=js_copy_func_r34
         )
     
-    def _predict_wrapper(self, image, model_repo, general_thresh, general_mcut, character_thresh, character_mcut):
+    def _predict_wrapper(self, image, model_repo, general_thresh, general_mcut, character_thresh, character_mcut, prepend_character_tags):
         """Wrapper for the prediction function with UI updates"""
         if image is None:
             return (
                 "",
                 "",
-                {},
-                {},
-                {},
+                None,
+                None,
+                None,
                 "No image provided for processing."
             )
         
@@ -294,6 +304,22 @@ class WaifuDiffusionUI:
             standard_tags, r34_tags, rating_dict, character_dict, general_dict = self.predictor.predict(
                 image, model_repo, general_thresh, general_mcut, character_thresh, character_mcut
             )
+
+            if prepend_character_tags and character_dict:
+                character_names = list(character_dict.keys())
+                # Prepend to standard tags
+                standard_character_tags = ", ".join(name.replace("_", " ") for name in character_names)
+                if standard_tags:
+                    standard_tags = f"{standard_character_tags}, {standard_tags}"
+                else:
+                    standard_tags = standard_character_tags
+
+                # Prepend to R34 tags
+                r34_character_tags = " ".join(name.replace(" ", "_") for name in character_names)
+                if r34_tags:
+                    r34_tags = f"{r34_character_tags} {r34_tags}"
+                else:
+                    r34_tags = r34_character_tags
             
             # Create processing info
             processing_info = self._create_processing_info(
@@ -316,9 +342,9 @@ class WaifuDiffusionUI:
             return (
                 "",
                 "",
-                {},
-                {},
-                {},
+                None,
+                None,
+                None,
                 error_info
             )
     
@@ -328,9 +354,9 @@ class WaifuDiffusionUI:
             None,  # image
             "",    # standard_output
             "",    # r34_output
-            {},
-            {},
-            {},
+            None,  # rating_output
+            None,  # character_output
+            None,  # all_tags_output
             "Upload an image to begin tagging."
         )
     
