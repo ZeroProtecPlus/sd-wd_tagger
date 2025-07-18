@@ -19,7 +19,6 @@ class WaifuDiffusionUI:
                 # Header
                 gr.HTML(
                     f"""
-                    <script src="file=E:/SD_Matrix/Packages/reforge/extensions/sd-wd_tagger/ui/clipboard.js"></script>
                     <div class='wd-tagger-header'>
                         <h2>{self.config.title}</h2>
                         <p>{self.config.description}</p>
@@ -123,7 +122,8 @@ class WaifuDiffusionUI:
                         copy_standard_btn = gr.Button(
                             "📋 Copy to Clipboard",
                             size="sm",
-                            elem_classes=["wd-tagger-copy-button"]
+                            elem_classes=["wd-tagger-copy-button"],
+                            elem_id="copy_standard_btn_id"
                         )
                     
                     with gr.TabItem("🔞 R34 Format", elem_classes=["wd-tagger-tab"]):
@@ -138,7 +138,8 @@ class WaifuDiffusionUI:
                         copy_r34_btn = gr.Button(
                             "📋 Copy to Clipboard",
                             size="sm",
-                            elem_classes=["wd-tagger-copy-button"]
+                            elem_classes=["wd-tagger-copy-button"],
+                            elem_id="copy_r34_btn_id"
                         )
                     
                     with gr.TabItem("⭐ Ratings", elem_classes=["wd-tagger-tab"]):
@@ -231,20 +232,49 @@ class WaifuDiffusionUI:
                 self.components["processing_info"]
             ]
         )
-        
         # Copy buttons with JS
+        js_copy_func_standard = """(text) => {
+            if (text) {
+                navigator.clipboard.writeText(text).then(() => {
+                    const btn = document.getElementById('copy_standard_btn_id');
+                    if (btn) {
+                        const originalText = btn.innerText;
+                        btn.innerText = 'Copied!';
+                        setTimeout(() => { btn.innerText = originalText; }, 2000);
+                    }
+                }).catch(err => alert('Oops, something went wrong: ' + err));
+            } else {
+                alert("No tags to copy");
+            }
+        }"""
+
+        js_copy_func_r34 = """(text) => {
+            if (text) {
+                navigator.clipboard.writeText(text).then(() => {
+                    const btn = document.getElementById('copy_r34_btn_id');
+                    if (btn) {
+                        const originalText = btn.innerText;
+                        btn.innerText = 'Copied!';
+                        setTimeout(() => { btn.innerText = originalText; }, 2000);
+                    }
+                }).catch(err => alert('Oops, something went wrong: ' + err));
+            } else {
+                alert("No tags to copy");
+            }
+        }"""
+
         self.components["copy_standard_btn"].click(
             fn=None,
             inputs=[self.components["standard_output"]],
             outputs=[],
-            _js="copyToClipboard"
+            _js=js_copy_func_standard
         )
         
         self.components["copy_r34_btn"].click(
             fn=None,
             inputs=[self.components["r34_output"]],
             outputs=[],
-            _js="copyToClipboard"
+            _js=js_copy_func_r34
         )
     
     def _predict_wrapper(self, image, model_repo, general_thresh, general_mcut, character_thresh, character_mcut):
