@@ -86,6 +86,12 @@ class WDTaggerConfig:
                 display_name="ViT v2",
                 description="Previous generation Vision Transformer",
                 version="v2"
+            ),
+            "eva02": ModelConfig(
+            repo_id="SmilingWolf/wd-eva02-large-tagger-v3",
+            display_name="Eva 02",
+            description="Previous generation Vision Transformer",
+            version="v2"
             )
         }
     
